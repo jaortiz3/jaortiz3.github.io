@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Changemaker Schools | Education for Sustainability</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- SDG COLOR PALETTE & VARIABLES --- */
+        :root {
+            /* Base Colors (Light Mode) */
+            --bg-main: #ffffff;
+            --bg-secondary: #f8fafc; /* Very light grey for sections */
+            --text-main: #0f172a;    /* Deep charcoal for headings */
+            --text-body: #475569;    /* Softer grey for paragraphs */
+            --border-color: #e2e8f0;
+
+            /* SDG Inspired Accents */
+            --sdg-red: #E5243B;    /* Goal 4: Quality Education */
+            --sdg-green: #4C9F38;  /* Goal 13: Climate Action */
+            --sdg-blue: #26BDE2;   /* Goal 6: Clean Water */
+            --sdg-orange: #FD6925; /* Goal 9: Innovation */
+            --sdg-gold: #FCC30B;   /* Goal 7: Energy */
+            
+            /* The "Global" Gradient */
+            --brand-gradient: linear-gradient(90deg, #E5243B, #FD6925, #FCC30B, #4C9F38, #26BDE2);
+            
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-body);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            height: 90px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--sdg-blue); }
+        
+        /* Mobile Menu Button (Hidden on Desktop) */
+        .menu-btn { display: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 120px 0 100px;
+            background: radial-gradient(circle at top right, rgba(38, 189, 226, 0.05), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(229, 36, 59, 0.05), transparent 40%);
+        }
+
+        .tagline-badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: var(--sdg-blue);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            border: 1px solid #bfdbfe;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--text-main);
+            font-weight: 800;
+            max-width: 900px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-body);
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn.primary {
+            background: var(--text-main);
+            color: white;
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn.primary:hover {
+            background: var(--brand-gradient);
+            transform: translateY(-2px);
+        }
+
+        .btn.secondary {
+            background: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn.secondary:hover { border-color: var(--text-main); background: #f8fafc; }
+
+        /* --- STATS SECTION --- */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 80px;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+        
+        /* Coloring the stats individually */
+        .stat-item:nth-child(1) h3 { color: var(--sdg-red); }
+        .stat-item:nth-child(2) h3 { color: var(--sdg-green); }
+        .stat-item:nth-child(3) h3 { color: var(--sdg-blue); }
+
+        .stat-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-body); }
+
+        /* --- SERVICES / PROGRAMS --- */
+        .services { padding: 100px 0; background: var(--bg-secondary); }
+
+        .section-header { margin-bottom: 60px; max-width: 600px; }
+        .section-header h2 { font-size: 2.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 15px; }
+        .section-header .line { width: 80px; height: 6px; background: var(--brand-gradient); border-radius: 3px; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid transparent;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-color);
+        }
+
+        /* Top colored bar for each card */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+        }
+
+        /* Assigning colors to cards */
+        .card-1::before { background: var(--sdg-red); }
+        .card-2::before { background: var(--sdg-green); }
+        .card-3::before { background: var(--sdg-blue); }
+
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--text-main); }
+        .service-card p { font-size: 1rem; color: var(--text-body); margin-bottom: 20px; }
+
+        .learn-more {
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .card-1 .learn-more { color: var(--sdg-red); }
+        .card-2 .learn-more { color: var(--sdg-green); }
+        .card-3 .learn-more { color: var(--sdg-blue); }
+
+        /* --- CONTACT --- */
+        .contact { padding: 100px 0; }
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-info {
+            padding: 60px;
+            background: var(--text-main); /* Dark background for info side */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .contact-info p { color: #cbd5e1; margin-bottom: 40px; font-size: 1.1rem; }
+
+        .info-item { margin-bottom: 25px; display: flex; align-items: center; gap: 15px; }
+        .info-item i { width: 40px; height: 40px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--sdg-blue); }
+        
+        .contact-form { padding: 60px; background: white; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-main); font-size: 0.9rem; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            background: #f8fafc;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--sdg-blue);
+            background: white;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--bg-secondary);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-body);
+            font-size: 0.9rem;
+        }
+        
+        .social-links { margin-top: 15px; display: flex; justify-content: center; gap: 20px; }
+        .social-links a { color: var(--text-main); font-size: 1.2rem; transition: 0.3s; }
+        .social-links a:hover { color: var(--sdg-blue); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Mobile menu placeholder */
+            .menu-btn { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .contact-info { padding: 40px; }
+            .contact-form { padding: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Global Changemaker <span>Schools.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-btn"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <section id="about" class="hero">
+        <div class="container">
+            <span class="tagline-badge">Advancing Education for Sustainable Development</span>
+            <h1>Empowering Schools to Educate for a <span>Sustainable Future.</span></h1>
+            <p>We work with schools, educators, and partners to transform traditional teaching into meaningful, real-world, and action-oriented learning experiences aligned with the SDGs.</p>
+            
+            <div class="hero-btns">
+                <a href="#contact" class="btn primary">Partner With Us <i class="fas fa-arrow-right"></i></a>
+                <a href="#programs" class="btn secondary">Our Programs</a>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h3>10+</h3>
+                    <p>Years of Advocacy</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100+</h3>
+                    <p>Educators Engaged</p>
+                </div>
+                <div class="stat-item">
+                    <h3>20+</h3>
+                    <p>Partner Schools</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Impact Areas</h2>
+                <div class="line"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card card-1">
+                    <h3>Teach4Change</h3>
+                    <p>Professional development programs that equip educators with practical tools to integrate ESD and SDGs into everyday classroom instruction.</p>
+                    <a href="#contact" class="learn-more">Inquire Program <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card card-2">
+                    <h3>Whole-School Integration</h3>
+                    <p>Support for schools in adopting a whole-school approach to sustainability by embedding ESD into curriculum, culture, leadership, and community.</p>
+                    <a href="#contact" class="learn-more">Get Support <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card card-3">
+                    <h3>SDG Action Summit</h3>
+                    <p>Design and execution of campaigns and summits that inspire students and communities to take action on sustainability and global issues.</p>
+                    <a href="#contact" class="learn-more">Join the Summit <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>Let's Collaborate</h2>
+                    <p>Whether you are a school leader, an educator, or a potential partner, we want to hear from you.</p>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email Us</strong><br>
+                            gcs@isbb.edu.ph<br>
+                            globalchangemakerschools@gmail.com
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>School / Organization</label>
+                        <input type="text" placeholder="School Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="email@address.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="4" placeholder="How can we work together?"></textarea>
+                    </div>
+                    <button type="submit" class="btn primary" style="width: 100%; border:none; cursor:pointer; justify-content:center;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Global Changemaker Schools. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
